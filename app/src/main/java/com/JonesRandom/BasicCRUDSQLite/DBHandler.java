@@ -39,24 +39,29 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + nama_tabel);
     }
 
+    /// MENGAMBIL SEMUA DATA SQLITE
     public Cursor semuaData() {
         Cursor cur = db.rawQuery("SELECT * FROM " + nama_tabel, null);
         return cur;
     }
-
+    
+    /// MENGAMBIL 1 DATA BERDASARKAN ID
     public Cursor satuData(long id) {
         Cursor cur = db.rawQuery("SELECT * FROM " + nama_tabel + " WHERE " + row_id + "=" + id, null);
         return cur;
     }
 
+    /// MENAMBAH DATA
     public void tambahData(ContentValues values) {
         db.insert(nama_tabel, null, values);
     }
 
+    /// UPDATE DATA BERDASARKAN ID
     public void editData(ContentValues values, long id) {
         db.update(nama_tabel, values, row_id + "=" + id, null);
     }
 
+    /// HAPUS DATA BERDASARKAN ID
     public void hapusData(long id) {
         db.delete(nama_tabel, row_id + "=" + id, null);
     }
